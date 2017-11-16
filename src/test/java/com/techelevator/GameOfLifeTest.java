@@ -31,5 +31,16 @@ public class GameOfLifeTest {
 		Assert.assertEquals("Should return size of row as 8", 8, grid[0].length);
 	}
 	
+	@Test
+	public void shouldReturnFalseToCheckCellStatus() {
+		Boolean[][] grid = gameGrid.getGrid();
+		Assert.assertFalse("Should return false for checking cell [0][0]", grid[0][0]);
+	}
+	
+	@Test
+	public void shouldReturnTrueToCheckCellStatus() {
+		Boolean[][] grid = gameGrid.getGrid();
+		Assert.assertTrue("Should return true for checking cell [0][6]", grid[0][6]);
+	}
 	
 }
