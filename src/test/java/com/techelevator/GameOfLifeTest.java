@@ -10,9 +10,16 @@ public class GameOfLifeTest {
 	}
 	
 	@Test
-	public void shouldReturnLengthOf6() {
+	public void shouldReturn6AsNumberOfRowsInGrid() {
 		GameOfLifeGrid gameGrid = new GameOfLifeGrid();
 		Boolean[][] grid = gameGrid.getGrid();
 		Assert.assertEquals("Should return length of 6", 6, grid.length);
+	}
+	
+	@Test
+	public void shouldReturn8AsNumberOfColumnsInGrid() {
+		GameOfLifeGrid gameGrid = new GameOfLifeGrid();
+		Boolean[][] grid = gameGrid.getGrid();
+		Assert.assertEquals("Should return size of row as 8", 8, grid.length);
 	}
 }
