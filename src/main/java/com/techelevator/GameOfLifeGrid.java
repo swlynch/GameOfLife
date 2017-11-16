@@ -27,7 +27,14 @@ public class GameOfLifeGrid {
 	}
 
 	public int countLivingCellsAboveAndBelow(int row, int column) {
-		return 0;
+		int livingAboveBelowCells = 0;
+		if (row > 0 && grid[row - 1][column]) {
+			livingAboveBelowCells++;
+		}
+		if (column < (grid.length - 1) && grid[row + 1][column]) {
+			livingAboveBelowCells++;
+		}
+		return livingAboveBelowCells;
 	}
 	
 	
