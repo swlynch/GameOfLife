@@ -5,7 +5,7 @@ public class GameOfLifeGrid {
 	public Boolean[][] grid;
 
 	public GameOfLifeGrid() {
-		this.grid = new Boolean[0][0]; 
+		this.grid = new Boolean[6][8]; 
 	}
 	
 	public Boolean[][] getGrid() {

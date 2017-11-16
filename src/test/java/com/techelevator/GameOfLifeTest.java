@@ -10,9 +10,9 @@ public class GameOfLifeTest {
 	}
 	
 	@Test
-	public void shouldReturnLengthOf8() {
+	public void shouldReturnLengthOf6() {
 		GameOfLifeGrid gameGrid = new GameOfLifeGrid();
 		Boolean[][] grid = gameGrid.getGrid();
-		Assert.assertEquals("Should return length of 8", grid.length);
+		Assert.assertEquals("Should return length of 6", 6, grid.length);
 	}
 }
