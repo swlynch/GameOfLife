@@ -54,7 +54,12 @@ public class GameOfLifeTest {
 	}
 	
 	@Test
-	public void countLivingCellsOnRightEdgeColumnShouldReturn1() {
+	public void countLivingCellsOnRightEdgeColumnShouldReturn0() {
 		Assert.assertEquals(0, gameGrid.countLivingCellsOnSides(3, 7));
+	}
+	
+	@Test
+	public void countLivingCellsAboveAndBelowShouldReturn1() {
+		Assert.assertEquals("Should return 1 for checking above and below cells at [2][2]", 1, gameGrid.countLivingCellsAboveAndBelow(2,2));
 	}
 }

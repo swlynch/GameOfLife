@@ -25,6 +25,10 @@ public class GameOfLifeGrid {
 		}
 		return livingNeighborCells;
 	}
+
+	public int countLivingCellsAboveAndBelow(int row, int column) {
+		return 0;
+	}
 	
 	
 	
