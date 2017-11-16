@@ -43,4 +43,8 @@ public class GameOfLifeTest {
 		Assert.assertTrue("Should return true for checking cell [0][6]", grid[0][6]);
 	}
 	
+	@Test
+	public void countLivingCellsNextToCellShouldReturn1() {
+		Assert.assertEquals(1, gameGrid.countLivingCellsOnSides(0, 6));
+	}
 }

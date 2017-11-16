@@ -14,6 +14,11 @@ public class GameOfLifeGrid {
 	public Boolean[][] getGrid() {
 		return grid;
 	}
+
+	public int countLivingCellsOnSides(int row, int column) {
+		return 0;
+	}
+	
 	
 	
 	
