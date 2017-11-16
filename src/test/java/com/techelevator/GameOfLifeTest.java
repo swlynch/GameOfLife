@@ -20,6 +20,6 @@ public class GameOfLifeTest {
 	public void shouldReturn8AsNumberOfColumnsInGrid() {
 		GameOfLifeGrid gameGrid = new GameOfLifeGrid();
 		Boolean[][] grid = gameGrid.getGrid();
-		Assert.assertEquals("Should return size of row as 8", 8, grid.length);
+		Assert.assertEquals("Should return size of row as 8", 8, grid[0].length);
 	}
 }
