@@ -17,10 +17,10 @@ public class GameOfLifeGrid {
 
 	public int countLivingCellsOnSides(int row, int column) {
 		int livingNeighborCells = 0;
-		if (grid[row][column + 1] && column <= grid[row].length) {
+		if (column < (grid[row].length - 1) && grid[row][column + 1]) {
 			livingNeighborCells++;
 		}
-		if (grid[row][column - 1] && column >= 0) {
+		if (column > 0 && grid[row][column - 1]) {
 			livingNeighborCells++;
 		}
 		return livingNeighborCells;
