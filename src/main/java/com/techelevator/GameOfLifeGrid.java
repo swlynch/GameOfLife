@@ -16,7 +16,14 @@ public class GameOfLifeGrid {
 	}
 
 	public int countLivingCellsOnSides(int row, int column) {
-		return 0;
+		int livingNeighborCells = 0;
+		if (grid[row][column + 1] && column <= grid[row].length) {
+			livingNeighborCells++;
+		}
+		if (grid[row][column - 1] && column >= 0) {
+			livingNeighborCells++;
+		}
+		return livingNeighborCells;
 	}
 	
 	

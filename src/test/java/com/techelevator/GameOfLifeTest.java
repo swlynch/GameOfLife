@@ -44,7 +44,7 @@ public class GameOfLifeTest {
 	}
 	
 	@Test
-	public void countLivingCellsNextToCellShouldReturn1() {
-		Assert.assertEquals(1, gameGrid.countLivingCellsOnSides(0, 6));
+	public void countLivingCellsNextToCellShouldReturn2() {
+		Assert.assertEquals(2, gameGrid.countLivingCellsOnSides(1,1));
 	}
 }
