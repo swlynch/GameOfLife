@@ -135,6 +135,11 @@ public class GameOfLifeTest {
 
 	@Test
 	public void shouldReturnTrueToCheckIfLivingCellShouldBeLivingInNextState() {
-		Assert.assertTrue("Should return true when checking if living cell at (1,7) shoudl be living in next state", gameGrid.shouldLive(1,7));
+		Assert.assertTrue("Should return true when checking if living cell at (1,7) should be living in next state", gameGrid.shouldLive(1,7));
+	}
+	
+	@Test
+	public void shouldAssertIfLivingCellShouldBeLivingNextState() {
+		Assert.assertFalse("Should return true when checking if living cell at (1,0) should be living in next state", gameGrid.shouldLive(1,0));
 	}
 }

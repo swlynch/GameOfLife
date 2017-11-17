@@ -54,14 +54,18 @@ public class GameOfLifeGrid {
 		return livingCellsOnDiagonals;
 	}
 
-	public int countSurroundingLivingCells(int row, int counter) {
-		return livingCellsOnSides(row,counter) + 
-				livingCellsAboveAndBelow(row,counter) + 
-				livingCellsOnDiagonals(row,counter);
+	public int countSurroundingLivingCells(int row, int column) {
+		return livingCellsOnSides(row,column) + 
+				livingCellsAboveAndBelow(row,column) + 
+				livingCellsOnDiagonals(row,column);
 	}
 
-	public boolean shouldLive(int row, int counter) {
-		
+	public boolean shouldLive(int row, int column) {
+		if (grid[row][column] && 
+			(countSurroundingLivingCells(row,column) == 2) || 
+				(countSurroundingLivingCells(row,column) == 3)) {
+			return true;
+		}
 		return false;
 	}
 	
