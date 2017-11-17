@@ -1,22 +1,41 @@
 package com.techelevator;
 
+import com.techelevator.view.*;
+
 public class GameOfLifeCLI {
 
+	private static final String[] MAIN_OPTIONS = {"Display initial Game of Life board"};
+	private static final String DISPLAY_GRID = "Display initial Game of Life board";
 	
 	private GameOfLifeGrid initialGrid;
 	private GameOfLifeGrid nextGrid;
+	private Menu menu;
 	
-	public GameOfLifeCLI() {
+	public GameOfLifeCLI(Menu menu, GameOfLifeGrid initialGrid) {
+		this.menu = menu;
+		this.initialGrid = initialGrid;
 	}
 	
 	public void run() {
 		while(true){
+			String choice = (String)menu.getChoiceFromOptions(MAIN_OPTIONS);
+			if(choice.equals(DISPLAY_GRID)) {
+				display(initialGrid);
+				
+			}
 		}
-	}
+		}
+	
 	
 	public static void main(String[] args) {
-		GameOfLifeCLI cli = new GameOfLifeCLI();
+		Menu menu = new Menu(System.in, System.out);
+		GameOfLifeGrid initialGrid = new GameOfLifeGrid();
+		GameOfLifeCLI cli = new GameOfLifeCLI(menu, initialGrid);
 		cli.run();
+	}
+	
+	public void display(GameOfLifeGrid grid) {
+		System.out.println("Hi!");
 	}
 	
 }
