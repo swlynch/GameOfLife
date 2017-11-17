@@ -39,9 +39,11 @@ public class GameOfLifeGrid {
 
 	public int livingCellsOnDiagonals(int row, int column) {
 		int livingCellsOnDiagonals = 0;
+		//check upper-left diagonal
 		if (row > 0 && column > 0 && grid[row - 1][column - 1]) {
 			livingCellsOnDiagonals++;
 		}
+		//check upper-right diagonal
 		if (row > 0 && column < (grid[row].length - 1) && grid[row - 1][column +1]) {
 			livingCellsOnDiagonals++;
 		}
