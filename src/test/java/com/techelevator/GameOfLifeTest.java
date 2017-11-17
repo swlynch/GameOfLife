@@ -103,4 +103,9 @@ public class GameOfLifeTest {
 		Assert.assertEquals("Should return 2 for checking how many living diagonal cells at [1][5]", 2, gameGrid.countLivingCellsOnDiagonals(1,5));
 	}
 	
+	@Test
+	public void countAllSurroundingLivingCellsShouldReturn3() {
+		Assert.assertEquals("Should return 3 for checking for all living cells at [1][5]", 3, gameGrid.countSurroundingLivingCells(1,5));
+	}
+	
 }

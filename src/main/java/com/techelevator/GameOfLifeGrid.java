@@ -53,6 +53,11 @@ public class GameOfLifeGrid {
 		}
 		return livingCellsOnDiagonals;
 	}
+
+	public int countSurroundingLivingCells(int row, int counter) {
+		
+		return 0;
+	}
 	
 	
 	
