@@ -72,4 +72,35 @@ public class GameOfLifeTest {
 	public void countLivingCellsAboveAndBelowInBottomRowShouldReturn0() {
 		Assert.assertEquals("Should return 1 for checking above and below cells at [5][7]", 0, gameGrid.countLivingCellsAboveAndBelow(5,7));
 	}
+	
+	@Test
+	public void countLivingCellsOnDiagonalsShouldReturn1() {
+		Assert.assertEquals("Should return for checking living cells at diagonals at [2][3]", 1, gameGrid.countLivingCellsOnDiagonals(2,3));
+	}
+	
+	@Test
+	public void countLivingCellsOnDiagonalInUpperLeftShouldReturn1() {
+		Assert.assertEquals("Should return 1 for checking how many living diagonal cells at [0][0]", 1, gameGrid.countLivingCellsOnDiagonals(0, 0));
+	}
+	
+	@Test
+	public void countLivingCellsOnDiagonalInUpperRightShouldReturn1() {
+		Assert.assertEquals("Should return 1 for checking how many living diagonal cells at [0][7]", 1, gameGrid.countLivingCellsOnDiagonals(0, 7));
+	}
+	
+	@Test
+	public void countLivingCellsOnDiagonalInBottomLeftShouldReturn0() {
+		Assert.assertEquals("Should return 0 for checking how many living diagonal cells at [5][0]", 0, gameGrid.countLivingCellsOnDiagonals(5, 0));
+	}
+	
+	@Test
+	public void countLivingCellsOnDiagonalInBottomRightShouldReturn0() {
+		Assert.assertEquals("Should return 0 for checking how many living diagonal cells at [5][7]", 0, gameGrid.countLivingCellsOnDiagonals(5, 7));
+	}
+	
+	@Test
+	public void countLivingCellsOnDiagonalInMiddleShouldReturn2() {
+		Assert.assertEquals("Should return 2 for checking how many living diagonal cells at [1][5]", 2, gameGrid.countLivingCellsOnDiagonals(1,5));
+	}
+	
 }

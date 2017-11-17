@@ -27,14 +27,31 @@ public class GameOfLifeGrid {
 	}
 
 	public int countLivingCellsAboveAndBelow(int row, int column) {
-		int livingAboveBelowCells = 0;
+		int livingCellsAboveBelowCells = 0;
 		if (row > 0 && grid[row - 1][column]) {
-			livingAboveBelowCells++;
+			livingCellsAboveBelowCells++;
 		}
 		if (column < (grid.length - 1) && grid[row + 1][column]) {
-			livingAboveBelowCells++;
+			livingCellsAboveBelowCells++;
 		}
-		return livingAboveBelowCells;
+		return livingCellsAboveBelowCells;
+	}
+
+	public int countLivingCellsOnDiagonals(int row, int column) {
+		int livingCellsOnDiagonals = 0;
+		if (row > 0 && column > 0 && grid[row - 1][column - 1]) {
+			livingCellsOnDiagonals++;
+		}
+		if (row > 0 && column < (grid[row].length - 1) && grid[row - 1][column +1]) {
+			livingCellsOnDiagonals++;
+		}
+		if (row < (grid.length - 1) && column > 0 && grid[row + 1][column - 1]) {
+			livingCellsOnDiagonals++;
+		}
+		if (row < (grid.length - 1) && column < (grid[row].length - 1) && grid[row + 1][column + 1]) {
+			livingCellsOnDiagonals++;
+		}
+		return livingCellsOnDiagonals;
 	}
 	
 	
