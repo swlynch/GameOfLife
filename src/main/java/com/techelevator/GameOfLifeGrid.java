@@ -59,6 +59,11 @@ public class GameOfLifeGrid {
 				livingCellsAboveAndBelow(row,counter) + 
 				livingCellsOnDiagonals(row,counter);
 	}
+
+	public boolean shouldLive(int row, int counter) {
+		
+		return false;
+	}
 	
 	
 	
