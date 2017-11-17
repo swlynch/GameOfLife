@@ -15,7 +15,7 @@ public class GameOfLifeGrid {
 		return grid;
 	}
 
-	public int countLivingCellsOnSides(int row, int column) {
+	public int livingCellsOnSides(int row, int column) {
 		int livingNeighborCells = 0;
 		if (column < (grid[row].length - 1) && grid[row][column + 1]) {
 			livingNeighborCells++;
@@ -26,18 +26,18 @@ public class GameOfLifeGrid {
 		return livingNeighborCells;
 	}
 
-	public int countLivingCellsAboveAndBelow(int row, int column) {
+	public int livingCellsAboveAndBelow(int row, int column) {
 		int livingCellsAboveBelowCells = 0;
 		if (row > 0 && grid[row - 1][column]) {
 			livingCellsAboveBelowCells++;
 		}
-		if (column < (grid.length - 1) && grid[row + 1][column]) {
+		if (row < (grid.length - 1) && grid[row + 1][column]) {
 			livingCellsAboveBelowCells++;
 		}
 		return livingCellsAboveBelowCells;
 	}
 
-	public int countLivingCellsOnDiagonals(int row, int column) {
+	public int livingCellsOnDiagonals(int row, int column) {
 		int livingCellsOnDiagonals = 0;
 		if (row > 0 && column > 0 && grid[row - 1][column - 1]) {
 			livingCellsOnDiagonals++;
@@ -55,8 +55,9 @@ public class GameOfLifeGrid {
 	}
 
 	public int countSurroundingLivingCells(int row, int counter) {
-		
-		return 0;
+		return livingCellsOnSides(row,counter) + 
+				livingCellsAboveAndBelow(row,counter) + 
+				livingCellsOnDiagonals(row,counter);
 	}
 	
 	
