@@ -17,10 +17,12 @@ public class GameOfLifeGrid {
 
 	public int livingCellsOnSides(int row, int column) {
 		int livingNeighborCells = 0;
-		if (column < (grid[row].length - 1) && grid[row][column + 1]) {
+		//checks right
+		if (!isInRightColumn(row, column) && grid[row][column + 1]) {
 			livingNeighborCells++;
 		}
-		if (column > 0 && grid[row][column - 1]) {
+		//check left
+		if (!isInLeftColumn(column) && grid[row][column - 1]) {
 			livingNeighborCells++;
 		}
 		return livingNeighborCells;
@@ -28,10 +30,12 @@ public class GameOfLifeGrid {
 
 	public int livingCellsAboveAndBelow(int row, int column) {
 		int livingCellsAboveBelowCells = 0;
-		if (row > 0 && grid[row - 1][column]) {
+		//check above
+		if (!isInTopRow(row) && grid[row - 1][column]) {
 			livingCellsAboveBelowCells++;
 		}
-		if (row < (grid.length - 1) && grid[row + 1][column]) {
+		//check below
+		if (!isInBottomRow(row) && grid[row + 1][column]) {
 			livingCellsAboveBelowCells++;
 		}
 		return livingCellsAboveBelowCells;
@@ -40,22 +44,40 @@ public class GameOfLifeGrid {
 	public int livingCellsOnDiagonals(int row, int column) {
 		int livingCellsOnDiagonals = 0;
 		//check upper-left diagonal
-		if (row > 0 && column > 0 && grid[row - 1][column - 1]) {
+		if (!isInTopRow(row) && !isInLeftColumn(column) && grid[row - 1][column - 1]) {
 			livingCellsOnDiagonals++;
 		}
 		//check upper-right diagonal
-		if (row > 0 && column < (grid[row].length - 1) && grid[row - 1][column +1]) {
+		if (!isInTopRow(row) && !isInRightColumn(row, column) && grid[row - 1][column +1]) {
 			livingCellsOnDiagonals++;
 		}
-		if (row < (grid.length - 1) && column > 0 && grid[row + 1][column - 1]) {
+		//check bottom-left diagonal
+		if (!isInBottomRow(row) && !isInLeftColumn(column) && grid[row + 1][column - 1]) {
 			livingCellsOnDiagonals++;
 		}
-		if (row < (grid.length - 1) && column < (grid[row].length - 1) && grid[row + 1][column + 1]) {
+		//check bottom-right diagonal
+		if (!isInBottomRow(row) && !isInRightColumn(row, column) && grid[row + 1][column + 1]) {
 			livingCellsOnDiagonals++;
 		}
 		return livingCellsOnDiagonals;
 	}
 
+	public boolean isInTopRow(int row) {
+		return row == 0;
+	}
+	
+	public boolean isInLeftColumn(int column) {
+		return column == 0;
+	}
+	
+	public boolean isInRightColumn(int row, int column) {
+		return (column == grid[row].length - 1);
+	}
+	
+	public boolean isInBottomRow(int row) {
+		return (row == (grid.length - 1));
+	}
+	
 	public int countSurroundingLivingCells(int row, int column) {
 		return livingCellsOnSides(row,column) + 
 				livingCellsAboveAndBelow(row,column) + 
