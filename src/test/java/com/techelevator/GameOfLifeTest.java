@@ -162,4 +162,23 @@ public class GameOfLifeTest {
 		Assert.assertTrue("initialGrid in CLI should have a true value at location [1][0]", initialGridArray[1][0]);
 	}
 	
+	@Test
+	public void cliInitialGridShouldHaveFalseDataInMiddleOfArray() {
+		GameOfLifeGrid initialGrid = cli.getInitialGrid();
+		Boolean[][] initialGridArray = initialGrid.getGrid();
+		Assert.assertFalse("initialGrid in CLI should have a false value at [3][3]", initialGridArray[3][3]);
+	}
+	
+	@Test
+	public void cliInitialGridShouldHaveFalseDataAt57() {
+		GameOfLifeGrid initialGrid = cli.getInitialGrid();
+		Boolean[][] initialGridArray = initialGrid.getGrid();
+		Assert.assertFalse("initialGrid in CLI should have a false value at [5][7]", initialGridArray[5][7]);
+	}
+	
+	@Test
+	public void cliNextGridShouldExist() {
+		Assert.assertNotNull("nextGrid should exist in CLI", cli.getNextGrid());
+	}
+	
 }
