@@ -13,7 +13,7 @@ public class GameOfLifeTest {
 	
 	@Before
 	public void setup() {
-		menu = new Menu(System.in, System.out);
+
 		gameGrid = new GameOfLifeGrid();
 		Boolean[][] array = {{false,false,false,false,false,false,true,false},
 		        {true,true,true,false,false,false,true,false},
@@ -22,6 +22,7 @@ public class GameOfLifeTest {
 		        {false,false,false,true,true,false,false,false},
 		        {false,false,false,true,true,false,false,false}};
 		gameGrid.setGrid(array);
+		menu = new Menu(System.in, System.out);
 		cli = new GameOfLifeCLI(menu, gameGrid);
 	}
 	
@@ -152,6 +153,13 @@ public class GameOfLifeTest {
 	@Test
 	public void cliShouldHaveAGameGrid() {
 		Assert.assertNotNull("CLI should have a GameOfLifeGrid object", cli.getInitialGrid());
+	}
+	
+	@Test
+	public void cliInitialGridShouldHaveData() {
+		GameOfLifeGrid initialGrid = cli.getInitialGrid();
+		Boolean[][] initialGridArray = initialGrid.getGrid();
+		Assert.assertTrue("initialGrid in CLI should have a true value at location [1][0]", initialGridArray[1][0]);
 	}
 	
 }

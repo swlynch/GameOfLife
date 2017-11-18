@@ -26,20 +26,30 @@ public class GameOfLifeCLI {
 		}
 		}
 	
-	
 	public static void main(String[] args) {
 		Menu menu = new Menu(System.in, System.out);
 		GameOfLifeGrid initialGrid = new GameOfLifeGrid();
 		GameOfLifeCLI cli = new GameOfLifeCLI(menu, initialGrid);
+		cli.setInitialGridData();
 		cli.run();
+	}
+	
+	public void setInitialGridData() {
+		Boolean[][] array = {{false,false,false,false,false,false,true,false},
+		        {true,true,true,false,false,false,true,false},
+		        {false,false,false,false,false,false,true,false},
+		        {false,false,false,false,false,false,false,false},
+		        {false,false,false,true,true,false,false,false},
+		        {false,false,false,true,true,false,false,false}};
+		initialGrid.setGrid(array);
+	}
+	
+	public GameOfLifeGrid getInitialGrid() {
+		return initialGrid;
 	}
 	
 	public void display(GameOfLifeGrid grid) {
 		System.out.println("Hi!");
-	}
-
-	public GameOfLifeGrid getInitialGrid() {
-		return initialGrid;
 	}
 	
 }
