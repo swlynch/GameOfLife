@@ -7,13 +7,13 @@ import com.techelevator.view.Menu;
 public class GameOfLifeTest {
 
 	GameOfLifeGrid gameGrid;
+	GameOfLifeGrid nextGrid;
 	Boolean[][] grid;
 	GameOfLifeCLI cli;
 	Menu menu;
 	
 	@Before
 	public void setup() {
-
 		gameGrid = new GameOfLifeGrid();
 		Boolean[][] array = {{false,false,false,false,false,false,true,false},
 		        {true,true,true,false,false,false,true,false},
@@ -24,6 +24,7 @@ public class GameOfLifeTest {
 		gameGrid.setGrid(array);
 		menu = new Menu(System.in, System.out);
 		cli = new GameOfLifeCLI(menu, gameGrid);
+		nextGrid = new GameOfLifeGrid(); 
 	}
 	
 	@Test
@@ -178,6 +179,8 @@ public class GameOfLifeTest {
 	
 	@Test
 	public void cliNextGridShouldExist() {
+		nextGrid = cli.createNextStateOfGrid(gameGrid);
+		cli.setNextGrid(nextGrid);
 		Assert.assertNotNull("nextGrid should exist in CLI", cli.getNextGrid());
 	}
 	
