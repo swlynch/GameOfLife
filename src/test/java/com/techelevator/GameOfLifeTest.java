@@ -2,13 +2,18 @@ package com.techelevator;
 
 import org.junit.*;
 
+import com.techelevator.view.Menu;
+
 public class GameOfLifeTest {
 
 	GameOfLifeGrid gameGrid;
 	Boolean[][] grid;
+	GameOfLifeCLI cli;
+	Menu menu;
 	
 	@Before
 	public void setup() {
+		menu = new Menu(System.in, System.out);
 		gameGrid = new GameOfLifeGrid();
 		Boolean[][] array = {{false,false,false,false,false,false,true,false},
 		        {true,true,true,false,false,false,true,false},
@@ -16,7 +21,8 @@ public class GameOfLifeTest {
 		        {false,false,false,false,false,false,false,false},
 		        {false,false,false,true,true,false,false,false},
 		        {false,false,false,true,true,false,false,false}};
-		gameGrid.setGrid(array);     
+		gameGrid.setGrid(array);
+		cli = new GameOfLifeCLI(menu, gameGrid);
 	}
 	
 	@Test
@@ -142,4 +148,10 @@ public class GameOfLifeTest {
 	public void shouldAssertIfLivingCellShouldBeLivingNextState() {
 		Assert.assertFalse("Should return true when checking if living cell at (1,0) should be living in next state", gameGrid.shouldLive(1,0));
 	}
+	
+	@Test
+	public void cliShouldHaveAGameGrid() {
+		Assert.assertNotNull("CLI should have a GameOfLifeGrid object", cli.getInitialGrid());
+	}
+	
 }

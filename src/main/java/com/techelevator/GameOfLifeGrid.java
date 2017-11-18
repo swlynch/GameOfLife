@@ -17,11 +17,9 @@ public class GameOfLifeGrid {
 
 	public int livingCellsOnSides(int row, int column) {
 		int livingNeighborCells = 0;
-		//checks right
 		if (!isInRightColumn(row, column) && grid[row][column + 1]) {
 			livingNeighborCells++;
 		}
-		//check left
 		if (!isInLeftColumn(column) && grid[row][column - 1]) {
 			livingNeighborCells++;
 		}
@@ -30,11 +28,9 @@ public class GameOfLifeGrid {
 
 	public int livingCellsAboveAndBelow(int row, int column) {
 		int livingCellsAboveBelowCells = 0;
-		//check above
 		if (!isInTopRow(row) && grid[row - 1][column]) {
 			livingCellsAboveBelowCells++;
 		}
-		//check below
 		if (!isInBottomRow(row) && grid[row + 1][column]) {
 			livingCellsAboveBelowCells++;
 		}
@@ -43,19 +39,15 @@ public class GameOfLifeGrid {
 
 	public int livingCellsOnDiagonals(int row, int column) {
 		int livingCellsOnDiagonals = 0;
-		//check upper-left diagonal
 		if (!isInTopRow(row) && !isInLeftColumn(column) && grid[row - 1][column - 1]) {
 			livingCellsOnDiagonals++;
 		}
-		//check upper-right diagonal
 		if (!isInTopRow(row) && !isInRightColumn(row, column) && grid[row - 1][column +1]) {
 			livingCellsOnDiagonals++;
 		}
-		//check bottom-left diagonal
 		if (!isInBottomRow(row) && !isInLeftColumn(column) && grid[row + 1][column - 1]) {
 			livingCellsOnDiagonals++;
 		}
-		//check bottom-right diagonal
 		if (!isInBottomRow(row) && !isInRightColumn(row, column) && grid[row + 1][column + 1]) {
 			livingCellsOnDiagonals++;
 		}
@@ -89,7 +81,7 @@ public class GameOfLifeGrid {
 			(countSurroundingLivingCells(row,column) == 2) || 
 				(countSurroundingLivingCells(row,column) == 3)) {
 			return true;
-		}
+		} 
 		return false;
 	}
 	

@@ -37,5 +37,9 @@ public class GameOfLifeCLI {
 	public void display(GameOfLifeGrid grid) {
 		System.out.println("Hi!");
 	}
+
+	public GameOfLifeGrid getInitialGrid() {
+		return null;
+	}
 	
 }
