@@ -39,7 +39,7 @@ public class GameOfLifeCLI {
 	}
 
 	public GameOfLifeGrid getInitialGrid() {
-		return null;
+		return initialGrid;
 	}
 	
 }
