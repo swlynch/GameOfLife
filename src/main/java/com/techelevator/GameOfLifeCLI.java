@@ -113,6 +113,16 @@ public class GameOfLifeCLI {
 		}
 	}
 
+	public void setSampleGridData() {
+		Boolean[][] array = { { false, false, false, false, false, false, true, false },
+				{ true, true, true, false, false, false, true, false },
+				{ false, false, false, false, false, false, true, false },
+				{ false, false, false, false, false, false, false, false },
+				{ false, false, false, true, true, false, false, false },
+				{ false, false, false, true, true, false, false, false } };
+		initialGrid.setGrid(array);
+	}
+
 	public void printOutGameGrid(GameOfLifeGrid grid) {
 		Boolean[][] gridArray = grid.getGrid();
 		for (int i = 0; i < gridArray.length; i++) {
@@ -156,16 +166,6 @@ public class GameOfLifeCLI {
 		}
 		nextGrid.setGrid(nextGridArray);
 		return nextGrid;
-	}
-
-	public void setSampleGridData() {
-		Boolean[][] array = { { false, false, false, false, false, false, true, false },
-				{ true, true, true, false, false, false, true, false },
-				{ false, false, false, false, false, false, true, false },
-				{ false, false, false, false, false, false, false, false },
-				{ false, false, false, true, true, false, false, false },
-				{ false, false, false, true, true, false, false, false } };
-		initialGrid.setGrid(array);
 	}
 
 	public GameOfLifeGrid getInitialGrid() {
