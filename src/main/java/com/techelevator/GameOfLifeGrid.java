@@ -101,7 +101,7 @@ public class GameOfLifeGrid {
 	}
 
 	public int getNumberOfColumns() {
-		return 0;
+		return numberOfColumns;
 	}
 	
 	
