@@ -1,7 +1,19 @@
 ## Conway's Game Of Life
 This code runs a demonstration of Conway's Game of Life, a cellular automation developed by John Horton Conway in 1970. Rules about the algorithm can be found [here](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules).
 
-Project was developed in Maven. 
+
+__Building__
+
+If you have Maven installed, you can run the unit tests by running the command:
+```
+mvn test
+```
+
+Or you can run the application by running the commands: 
+```
+mvn install
+java -cp target/GameOfLife-0.0.1-SNAPSHOT.jar com.techelevator.GameOfLifeCLI 
+```
 
 __Functionality__
 
