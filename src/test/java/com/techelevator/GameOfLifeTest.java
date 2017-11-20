@@ -192,4 +192,11 @@ public class GameOfLifeTest {
 		Assert.assertEquals("Number of rows should return 5", 5, otherGrid.getNumberOfRows());
 	}
 	
+	@Test
+	public void setNumberOfColumnsTo5AndReturnCorrectQueryForColumns() {
+		GameOfLifeGrid otherGrid = new GameOfLifeGrid();
+		otherGrid.setNumberOfColumn(5);
+		Assert.assertEquals("Number of rows should return 5", 5, otherGrid.getNumberOfColumns());
+	}
+	
 }

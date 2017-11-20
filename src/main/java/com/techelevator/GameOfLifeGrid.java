@@ -4,6 +4,7 @@ public class GameOfLifeGrid {
 
 	public Boolean[][] grid;
 	private int numberOfRows;
+	private int numberOfColumns;
 	
 
 	public GameOfLifeGrid() {
@@ -93,6 +94,14 @@ public class GameOfLifeGrid {
 
 	public int getNumberOfRows() {
 		return numberOfRows;
+	}
+
+	public void setNumberOfColumn(int columns) {
+		this.numberOfColumns = columns;
+	}
+
+	public int getNumberOfColumns() {
+		return 0;
 	}
 	
 	
