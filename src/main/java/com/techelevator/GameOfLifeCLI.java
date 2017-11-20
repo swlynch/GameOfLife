@@ -31,28 +31,7 @@ public class GameOfLifeCLI {
 			if (choice.equals(SET_DIMENSIONS)) {
 				userSetsDimensions();
 			} else if (choice.equals(RUN_GRID)) {
-				randomizeGridData(initialGrid);
-				System.out.println("\nINITIAL GRID: \n");
-				try {
-					printOutGameGrid(initialGrid);
-				} catch (NullPointerException e){
-					setSampleGridData();
-					printOutGameGrid(initialGrid);
-				}
-				while (true) {
-					System.out.println("Do you want to see the next state of grid?");
-					String nextGridChoice = (String) menu.getChoiceFromOptions(NEXT_GRID);
-					if (nextGridChoice.equals("YES")) {
-						nextGrid = new GameOfLifeGrid();
-						nextGrid = createNextStateOfGrid(initialGrid);
-						System.out.println("\nNEXT STATE: \n");
-						printOutGameGrid(nextGrid);
-
-					} else {
-						break;
-					}
-					initialGrid = nextGrid;
-				}
+				runGameOfLifeDemo();
 			} else {
 				System.out.println(SIGN_OFF);
 				break;
@@ -65,49 +44,6 @@ public class GameOfLifeCLI {
 		GameOfLifeGrid initialGrid = new GameOfLifeGrid();
 		GameOfLifeCLI cli = new GameOfLifeCLI(menu, initialGrid);
 		cli.run();
-	}
-
-	public void setSampleGridData() {
-		Boolean[][] array = { { false, false, false, false, false, false, true, false },
-				{ true, true, true, false, false, false, true, false },
-				{ false, false, false, false, false, false, true, false },
-				{ false, false, false, false, false, false, false, false },
-				{ false, false, false, true, true, false, false, false },
-				{ false, false, false, true, true, false, false, false } };
-		initialGrid.setGrid(array);
-	}
-
-	public GameOfLifeGrid getInitialGrid() {
-		return initialGrid;
-	}
-
-	public boolean printOutGameGrid(GameOfLifeGrid grid) {
-		Boolean[][] gridArray = grid.getGrid();
-		boolean gridHasLivingCells = false;
-		for (int i = 0; i < gridArray.length; i++) {
-			System.out.print("     ");
-			for (int k = 0; k < gridArray[i].length; k++) {
-				System.out.print(displayLivingOrDead(gridArray[i][k]) + " ");
-				if(gridArray[i][k]) {
-					gridHasLivingCells = true;
-				}
-			}
-			System.out.println();
-		}
-		System.out.println();
-		return (gridHasLivingCells);
-	}
-
-	public GameOfLifeGrid createNextStateOfGrid(GameOfLifeGrid initialGrid) {
-		Boolean[][] initialGridArray = initialGrid.getGrid();
-		Boolean[][] nextGridArray = new Boolean[initialGridArray.length][initialGridArray[0].length];
-		for (int i = 0; i < initialGridArray.length; i++) {
-			for (int k = 0; k < initialGridArray[i].length; k++) {
-				nextGridArray[i][k] = initialGrid.shouldLive(i, k);
-			}
-		}
-		nextGrid.setGrid(nextGridArray);
-		return nextGrid;
 	}
 	
 	private void userSetsDimensions() {
@@ -137,13 +73,90 @@ public class GameOfLifeCLI {
 		}
 		initialGrid.setGridDimensions(rows, columns);
 	}
+	
+	public void runGameOfLifeDemo() {
+		System.out.println("\nINITIAL GRID: \n");
+		try {
+			randomizeGridData(initialGrid);
+			printOutGameGrid(initialGrid);
+		} catch (NullPointerException e){
+			setSampleGridData();
+			printOutGameGrid(initialGrid);
+		}
+		while (true) {
+			System.out.println("Do you want to see the next state of grid?");
+			String nextGridChoice = (String) menu.getChoiceFromOptions(NEXT_GRID);
+			if (nextGridChoice.equals("YES")) {
+				nextGrid = new GameOfLifeGrid();
+				nextGrid = createNextStateOfGrid(initialGrid);
+				System.out.println("\nNEXT STATE: \n");
+				printOutGameGrid(nextGrid);
 
+			} else {
+				break;
+			}
+			initialGrid = nextGrid;
+		}
+	}
+	
+	public void randomizeGridData(GameOfLifeGrid grid) {
+		Boolean[][] gridArray = grid.getGrid();
+		for (int i = 0; i < gridArray.length; i++) {
+			for (int k = 0; k < gridArray[i].length; k++) {
+				gridArray[i][k] = (Math.random() < 0.5);
+			}
+		}
+	}
+
+	public boolean printOutGameGrid(GameOfLifeGrid grid) {
+		Boolean[][] gridArray = grid.getGrid();
+		boolean gridHasLivingCells = false;
+		for (int i = 0; i < gridArray.length; i++) {
+			System.out.print("     ");
+			for (int k = 0; k < gridArray[i].length; k++) {
+				System.out.print(displayLivingOrDead(gridArray[i][k]) + " ");
+				if(gridArray[i][k]) {
+					gridHasLivingCells = true;
+				}
+			}
+			System.out.println();
+		}
+		System.out.println();
+		return (gridHasLivingCells);
+	}
+	
 	private String displayLivingOrDead(Boolean bool) {
 		if (bool) {
 			return "O";
 		} else {
 			return ".";
 		}
+	}
+	
+	public GameOfLifeGrid createNextStateOfGrid(GameOfLifeGrid initialGrid) {
+		Boolean[][] initialGridArray = initialGrid.getGrid();
+		Boolean[][] nextGridArray = new Boolean[initialGridArray.length][initialGridArray[0].length];
+		for (int i = 0; i < initialGridArray.length; i++) {
+			for (int k = 0; k < initialGridArray[i].length; k++) {
+				nextGridArray[i][k] = initialGrid.shouldLive(i, k);
+			}
+		}
+		nextGrid.setGrid(nextGridArray);
+		return nextGrid;
+	}
+
+	public void setSampleGridData() {
+		Boolean[][] array = { { false, false, false, false, false, false, true, false },
+				{ true, true, true, false, false, false, true, false },
+				{ false, false, false, false, false, false, true, false },
+				{ false, false, false, false, false, false, false, false },
+				{ false, false, false, true, true, false, false, false },
+				{ false, false, false, true, true, false, false, false } };
+		initialGrid.setGrid(array);
+	}
+
+	public GameOfLifeGrid getInitialGrid() {
+		return initialGrid;
 	}
 
 	public void setNextGrid(GameOfLifeGrid nextGrid) {
@@ -152,15 +165,6 @@ public class GameOfLifeCLI {
 
 	public GameOfLifeGrid getNextGrid() {
 		return nextGrid;
-	}
-
-	public void randomizeGridData(GameOfLifeGrid grid) {
-		Boolean[][] gridArray = grid.getGrid();
-		for (int i = 0; i < gridArray.length; i++) {
-			for (int k = 0; k < gridArray[i].length; k++) {
-				gridArray[i][k] = (Math.random() < 0.5);
-			}
-		}
 	}
 	
 }
