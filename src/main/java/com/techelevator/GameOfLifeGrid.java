@@ -3,6 +3,8 @@ package com.techelevator;
 public class GameOfLifeGrid {
 
 	public Boolean[][] grid;
+	private int numberOfRows;
+	
 
 	public GameOfLifeGrid() {
 	}
@@ -83,6 +85,14 @@ public class GameOfLifeGrid {
 			return true;
 		} 
 		return false;
+	}
+
+	public void setNumberOfRows(int rows) {
+		this.numberOfRows = rows;
+	}
+
+	public int getNumberOfRows() {
+		return 0;
 	}
 	
 	

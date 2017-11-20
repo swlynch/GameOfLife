@@ -177,11 +177,19 @@ public class GameOfLifeTest {
 		Assert.assertFalse("initialGrid in CLI should have a false value at [5][7]", initialGridArray[5][7]);
 	}
 	
+//	@Test
+//	public void cliNextGridShouldExist() {
+//		cli.run();
+//		nextGrid = cli.createNextStateOfGrid(gameGrid);
+//		cli.setNextGrid(nextGrid);
+//		Assert.assertNotNull("nextGrid should exist in CLI", cli.getNextGrid());
+//	}
+	
 	@Test
-	public void cliNextGridShouldExist() {
-		nextGrid = cli.createNextStateOfGrid(gameGrid);
-		cli.setNextGrid(nextGrid);
-		Assert.assertNotNull("nextGrid should exist in CLI", cli.getNextGrid());
+	public void setNumberOfRowsTo5AndReturnCorrectQueryForRows() {
+		GameOfLifeGrid otherGrid = new GameOfLifeGrid();
+		otherGrid.setNumberOfRows(5);
+		Assert.assertEquals("Number of rows should return 5", 5, otherGrid.getNumberOfRows());
 	}
 	
 }

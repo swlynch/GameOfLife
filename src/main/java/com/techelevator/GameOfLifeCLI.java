@@ -10,6 +10,8 @@ public class GameOfLifeCLI {
 	private static final String EXIT = "Exit";
 	private static final String[] NEXT_GRID = {"YES", "NO"};
 	private static final String[] MAIN_OPTIONS = {DISPLAY_GRID, EXIT};
+	private static final String BANNER = "*** CONWAY'S GAME OF LIFE DEMO ***";
+	private static final String SIGN_OFF = "\nthank you for observing the beauty and complexity of life forms.";
 	
 	private GameOfLifeGrid initialGrid;
 	private GameOfLifeGrid nextGrid;
@@ -21,6 +23,7 @@ public class GameOfLifeCLI {
 	}
 	
 	public void run() {
+		System.out.println(BANNER);
 		while(true){
 			String choice = (String)menu.getChoiceFromOptions(MAIN_OPTIONS);
 			if(choice.equals(DISPLAY_GRID)) {
@@ -41,8 +44,11 @@ public class GameOfLifeCLI {
 					}
 					initialGrid = nextGrid;
 				}
-			} else 
-			break;
+			} else {
+				System.out.println(SIGN_OFF);
+				break;
+			}
+
 		}
 		}
 	
