@@ -1,4 +1,5 @@
 ##Conway's Game Of Life
+
 This code runs a demonstration of Conway's Game of Life, a cellular automation developed by John Horton Conway in 1970. Rules about the algorithm can be found [here](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Rules).
 
 
