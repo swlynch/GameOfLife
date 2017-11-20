@@ -1,21 +1,25 @@
 package com.techelevator;
 
+import java.util.Scanner;
 import java.util.function.Function;
 
 import com.techelevator.view.*;
 
 public class GameOfLifeCLI {
 
-	private static final String DISPLAY_GRID = "Display initial Game of Life board";
+	private static final String DISPLAY_GRID = "Display initial Game of Life grid";
+	private static final String SET_DIMENSIONS = "Change dimensions of grid";
+	private static final String CREATE_INITIAL_DATA = "Create your own starting grid";
 	private static final String EXIT = "Exit";
 	private static final String[] NEXT_GRID = {"YES", "NO"};
-	private static final String[] MAIN_OPTIONS = {DISPLAY_GRID, EXIT};
+	private static final String[] MAIN_OPTIONS = {DISPLAY_GRID, SET_DIMENSIONS, CREATE_INITIAL_DATA ,EXIT};
 	private static final String BANNER = "*** CONWAY'S GAME OF LIFE DEMO ***";
 	private static final String SIGN_OFF = "\nthank you for observing the beauty and complexity of life forms.";
 	
 	private GameOfLifeGrid initialGrid;
 	private GameOfLifeGrid nextGrid;
 	private Menu menu;
+	private Scanner userInput = new Scanner(System.in);
 	
 	public GameOfLifeCLI(Menu menu, GameOfLifeGrid initialGrid) {
 		this.menu = menu;
@@ -27,7 +31,7 @@ public class GameOfLifeCLI {
 		while(true){
 			String choice = (String)menu.getChoiceFromOptions(MAIN_OPTIONS);
 			if(choice.equals(DISPLAY_GRID)) {
-				setInitialGridData();
+				setSampleGridData();
 				System.out.println("\nINITIAL GRID: \n");
 				printOutGameGrid(initialGrid);
 				while(true) {
@@ -44,6 +48,29 @@ public class GameOfLifeCLI {
 					}
 					initialGrid = nextGrid;
 				}
+			} else if (choice.equals(SET_DIMENSIONS)) {
+				boolean validRows = false;
+				boolean validColumns = false;
+				int rows = 0;
+				int columns = 0;
+				while(!validRows) {
+					System.out.println("\nSet Grid Dimensions:\n" + 
+										"How many rows? ");
+					rows = userInput.nextInt();
+					if (rows > 0) {
+						validRows = true;
+					}
+				} 
+				while(!validColumns) {
+					System.out.println("How many columns? ");
+					columns = userInput.nextInt();
+					if (columns > 0 ) {
+						validColumns = true;
+					}
+				}
+				initialGrid.setGridDimensions(rows, columns);
+			} else if (choice.equals(CREATE_INITIAL_DATA)) {
+				
 			} else {
 				System.out.println(SIGN_OFF);
 				break;
@@ -59,7 +86,7 @@ public class GameOfLifeCLI {
 		cli.run();
 	}
 	
-	public void setInitialGridData() {
+	public void setSampleGridData() {
 		Boolean[][] array = {{false,false,false,false,false,false,true,false},
 		        {true,true,true,false,false,false,true,false},
 		        {false,false,false,false,false,false,true,false},
