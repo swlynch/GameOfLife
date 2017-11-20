@@ -105,6 +105,7 @@ public class GameOfLifeGrid {
 	}
 
 	public void setGridDimensions(int rows, int columns) {
+		this.grid = new Boolean[rows][columns];
 	}
 	
 	
