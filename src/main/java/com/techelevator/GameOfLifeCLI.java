@@ -29,27 +29,9 @@ public class GameOfLifeCLI {
 		while (true) {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_OPTIONS);
 			if (choice.equals(SET_DIMENSIONS)) {
-				boolean validRows = false;
-				boolean validColumns = false;
-				int rows = 0;
-				int columns = 0;
-				while (!validRows) {
-					System.out.println("\nSet Grid Dimensions:\n" + "How many rows? ");
-					rows = userInput.nextInt();
-					if (rows > 0) {
-						validRows = true;
-					}
-				}
-				while (!validColumns) {
-					System.out.println("How many columns? ");
-					columns = userInput.nextInt();
-					if (columns > 0) {
-						validColumns = true;
-					}
-				}
-				initialGrid.setGridDimensions(rows, columns);
-				randomizeGridData(initialGrid);
+				userSetsDimensions();
 			} else if (choice.equals(RUN_GRID)) {
+				randomizeGridData(initialGrid);
 				System.out.println("\nINITIAL GRID: \n");
 				try {
 					printOutGameGrid(initialGrid);
@@ -99,15 +81,21 @@ public class GameOfLifeCLI {
 		return initialGrid;
 	}
 
-	public void printOutGameGrid(GameOfLifeGrid grid) {
+	public boolean printOutGameGrid(GameOfLifeGrid grid) {
 		Boolean[][] gridArray = grid.getGrid();
+		boolean gridHasLivingCells = false;
 		for (int i = 0; i < gridArray.length; i++) {
+			System.out.print("     ");
 			for (int k = 0; k < gridArray[i].length; k++) {
 				System.out.print(displayLivingOrDead(gridArray[i][k]) + " ");
+				if(gridArray[i][k]) {
+					gridHasLivingCells = true;
+				}
 			}
 			System.out.println();
 		}
 		System.out.println();
+		return (gridHasLivingCells);
 	}
 
 	public GameOfLifeGrid createNextStateOfGrid(GameOfLifeGrid initialGrid) {
@@ -120,6 +108,34 @@ public class GameOfLifeCLI {
 		}
 		nextGrid.setGrid(nextGridArray);
 		return nextGrid;
+	}
+	
+	private void userSetsDimensions() {
+		boolean validRows = false;
+		boolean validColumns = false;
+		int rows = 0;
+		int columns = 0;
+		System.out.println("\nSet Grid Dimensions:\n");
+		while (!validRows || rows <= 0) {
+			System.out.println("How many rows? ");
+			try {
+			    rows = userInput.nextInt();
+			    validRows = true;
+			} catch (Exception e) {
+			    System.out.println("Please enter an integer higher than 0\n");
+			    userInput.next();
+			}
+		}
+		while (!validColumns || columns <= 0) {
+			System.out.println("How many columns? ");
+			try {
+				columns = userInput.nextInt();
+				validColumns = true;
+			} catch (Exception e) {
+				System.out.println("Please enter an integer higher than 0\n");
+			}
+		}
+		initialGrid.setGridDimensions(rows, columns);
 	}
 
 	private String displayLivingOrDead(Boolean bool) {
@@ -146,5 +162,5 @@ public class GameOfLifeCLI {
 			}
 		}
 	}
-
+	
 }
