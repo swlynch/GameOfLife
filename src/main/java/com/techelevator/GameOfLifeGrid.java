@@ -92,7 +92,7 @@ public class GameOfLifeGrid {
 	}
 
 	public int getNumberOfRows() {
-		return 0;
+		return numberOfRows;
 	}
 	
 	
