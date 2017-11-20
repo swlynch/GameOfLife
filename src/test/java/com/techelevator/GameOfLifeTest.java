@@ -199,4 +199,15 @@ public class GameOfLifeTest {
 		Assert.assertEquals("Number of rows should return 5", 5, otherGrid.getNumberOfColumns());
 	}
 	
+	@Test
+	public void setGridDimenstionsInGridUsingRowsAndColumnsSetter() {
+		GameOfLifeGrid otherGrid = new GameOfLifeGrid();
+		otherGrid.setNumberOfRows(4);
+		otherGrid.setNumberOfColumn(5);
+		otherGrid.setGridDimensions(otherGrid.getNumberOfRows(),otherGrid.getNumberOfColumns());
+		Boolean[][] otherArray = otherGrid.getGrid();
+		Assert.assertEquals("Should return number of rows as 4", 4, otherArray.length);
+		Assert.assertEquals("Should return number of columns as 5", 5, otherArray[0].length);;
+	}
+	
 }

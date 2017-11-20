@@ -103,6 +103,9 @@ public class GameOfLifeGrid {
 	public int getNumberOfColumns() {
 		return numberOfColumns;
 	}
+
+	public void setGridDimensions(int rows, int columns) {
+	}
 	
 	
 	
