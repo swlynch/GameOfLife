@@ -12,7 +12,8 @@ public class GameOfLifeCLI {
 	private static final String[] NEXT_GRID = { "YES", "NO" };
 	private static final String[] MAIN_OPTIONS = { SET_DIMENSIONS, RUN_GRID, EXIT };
 	private static final String BANNER = "*** CONWAY'S GAME OF LIFE DEMO ***";
-	private static final String SIGN_OFF = "\nthank you for observing the beauty and complexity of life forms.";
+	private static final String SIGN_OFF = "\nThank you for observing the beauty and complexity of life.\n" +
+											"\nCoded by Steve Lynch (http://swlynch.github.io)";
 
 	private GameOfLifeGrid initialGrid;
 	private GameOfLifeGrid nextGrid;
@@ -91,7 +92,11 @@ public class GameOfLifeCLI {
 				nextGrid = createNextStateOfGrid(initialGrid);
 				System.out.println("\nNEXT STATE: \n");
 				printOutGameGrid(nextGrid);
-
+				if (!hasAtLeastOneLivingCell(nextGrid)) {
+					System.out.println("\nAll of the cells are dead. Hope is gone.\n" + 
+										"\nGAME OVER");
+					break;
+				}
 			} else {
 				break;
 			}
@@ -108,21 +113,29 @@ public class GameOfLifeCLI {
 		}
 	}
 
-	public boolean printOutGameGrid(GameOfLifeGrid grid) {
+	public void printOutGameGrid(GameOfLifeGrid grid) {
 		Boolean[][] gridArray = grid.getGrid();
-		boolean gridHasLivingCells = false;
 		for (int i = 0; i < gridArray.length; i++) {
 			System.out.print("     ");
 			for (int k = 0; k < gridArray[i].length; k++) {
 				System.out.print(displayLivingOrDead(gridArray[i][k]) + " ");
-				if(gridArray[i][k]) {
-					gridHasLivingCells = true;
-				}
 			}
 			System.out.println();
 		}
 		System.out.println();
-		return (gridHasLivingCells);
+	}
+	
+	public boolean hasAtLeastOneLivingCell(GameOfLifeGrid grid) {
+		boolean hasAtLeastOneLivingCell = false;
+		Boolean[][] gridArray = grid.getGrid();
+		for (int i = 0; i < gridArray.length; i++) {
+			for (int k = 0; k < gridArray[i].length; k++) {
+				if(gridArray[i][k]) {
+					hasAtLeastOneLivingCell = true;
+				}
+			}
+		}
+		return hasAtLeastOneLivingCell;
 	}
 	
 	private String displayLivingOrDead(Boolean bool) {
